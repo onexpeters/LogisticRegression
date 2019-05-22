@@ -1,0 +1,23 @@
+class Regression_descent:
+    def generateWeightsAndBiases(self,features):
+        w=np.random.randn(len(features[0]))
+        b=np.random.randn(len(features))
+        return w,b
+    def GenerateY(self,w,x,b):
+        y=np.dot(w,x.transpose())+b
+        return y.reshape(-1,1)
+    def cost(self,y,t):
+        error=(y-t)
+        return error
+    def WeightDerivativePlusrate(self,features,error,rate):
+        derivative=[]
+        for columns in features.T:
+            weight_derivative=(np.dot(columns,error)).sum()
+            derivative.append(rate*(weight_derivative/len(features))) 
+            weight_derivative=0
+        return derivative
+    def adjusted_weights(self,weights,derivatives):
+        return weights-derivatives
+    def adjusted_biases(self,biases,error,features,rate):
+        error_bias=error.sum()/len(features)
+        return (biases-(rate*error_bias))
