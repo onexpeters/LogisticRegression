@@ -1,10 +1,11 @@
 class Regression_descent:
     def generateWeightsAndBiases(self,features):#initial weights and bias
+        np.random.seed(43)
         w=np.random.randn(len(features[0]))
         b=np.random.randn(1,1)
-        return w,b
+        return w.reshape(-1,1),b.reshape(-1,1)
     def GenerateY(self,w,x,b):#compute Y estimate
-        y=np.dot(w,x.transpose())+b
+        y=np.dot(w.transpose(),x.transpose())+b
         return y.reshape(-1,1)
     def cost(self,y,t):#Compute error term
         error=(y-t)
