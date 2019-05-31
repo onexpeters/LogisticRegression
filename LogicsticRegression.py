@@ -1,4 +1,4 @@
-cimport numpy as np
+import numpy as np
 class LogisticRegression:
     def initial_Weights(self,features): 
         extra_column=np.ones((len(features),1))#add an extra columns on feature matrix for the bias
@@ -28,6 +28,5 @@ class LogisticRegression:
         return predict
     def accuracy(self,predicted_labels, actual_labels):
             diff = predicted_labels - actual_labels
-            return 1.0 - (float(np.c
-        
-        
+            return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
+     
